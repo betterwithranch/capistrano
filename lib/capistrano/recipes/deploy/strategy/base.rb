@@ -51,7 +51,7 @@ module Capistrano
           def system(*args)
             cmd = args.join(' ')
             result = nil
-            if RUBY_PLATFORM =~ /win32/
+            if RUBY_PLATFORM =~ /win32|mingw/
 							cmd = cmd.split(/\s+/).collect {|w| w.match(/^[\w+]+:\/\//) ? w : w.gsub('/', '\\') }.join(' ') # Split command by spaces, change / by \\ unless element is a some+thing:// 
               cmd.gsub!(/^cd /,'cd /D ') # Replace cd with cd /D
               cmd.gsub!(/&& cd /,'&& cd /D ') # Replace cd with cd /D
